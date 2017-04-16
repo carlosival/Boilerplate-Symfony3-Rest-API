@@ -1,0 +1,27 @@
+DietaBundle\Entity\DietaItem:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+        clasificacion:
+            expose: true
+    relations:
+        -
+            rel: self
+            href:
+                route: dieta_dietaitem_get
+                parameters:
+                    id: expr(object.getId())
+            absolute: true
+
+        -
+            rel:  recetas
+            href:
+                route: dieta_dietaitem_dietaitem_recetas
+                parameters:
+                    id: expr(object.getId())
+            absolute: true
+            embedded:
+                  content: expr(object.getRecetas() )
+
+

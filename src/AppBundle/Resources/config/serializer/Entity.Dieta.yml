@@ -1,0 +1,47 @@
+DietaBundle\Entity\Dieta:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+        nombre:
+            expose: true
+
+    relations:
+        -
+            rel: self
+            href:
+                route: dieta_dieta_get
+                parameters:
+                      id: expr(object.getId())
+            absolute: true
+        -
+            rel:  dietaitems
+            href:
+                route: dieta_dieta_dieta_dietaitems
+                parameters:
+                      id: expr(object.getId())
+            absolute: true
+            embedded:
+                    content: expr(object.getDietaItems())
+            exclusion:
+                    exclude_if: expr(object.getDietaItems() === null)
+        -
+            rel:  usuarios_seguidores
+            href:
+                route: dieta_dieta_usuarios_seguidores
+                parameters:
+                      id: expr(object.getId())
+            absolute: true
+            exclusion:
+                    exclude_if: expr(object.getUsuariosSeguidores() === null)
+        -
+            rel: owner
+            href:
+                route: dieta_dieta_owner
+                parameters:
+                      id: expr(object.getUser())
+            absolute: true
+            embedded:
+                    content: expr(object.getUser())
+            exclusion:
+                    exclude_if: expr(object.getUser() === null)

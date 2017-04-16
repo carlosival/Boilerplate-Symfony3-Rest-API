@@ -1,0 +1,4 @@
+dieta_homepage:
+    path:     /
+    defaults: { _controller: DietaBundle:Default:index }
+

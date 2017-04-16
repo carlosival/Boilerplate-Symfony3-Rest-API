@@ -1,0 +1,1 @@
+php bin/console doctrine:fixtures:load --fixtures=/var/www/html/backend-api/app/DataFixtures/ORM/DietaFixtures.php

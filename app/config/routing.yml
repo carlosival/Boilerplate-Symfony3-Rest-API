@@ -1,0 +1,52 @@
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+
+front_dieta:
+    resource: "@FrontAppBundle/Controller/"
+    type:     annotation
+    prefix:   /
+    defaults: { _format: html }
+
+api_dieta_util:
+    resource: "@AppBundle/Controller/DefaultController.php"
+    type:     annotation
+    prefix:   /api
+
+api_dieta_item:
+    resource: "@AppBundle/Controller/DietaItemController.php"
+    type:     annotation
+    prefix:   /api
+
+api_user:
+    resource: "@AppBundle/Controller/UserController.php"
+    type:     annotation
+    prefix:   /api
+
+api_receta:
+    resource: "@AppBundle/Controller/RecetaController.php"
+    type:     annotation
+    prefix:   /api
+
+api_dieta:
+    resource: "@AppBundle/Controller/DietaController.php"
+    type:     annotation
+    prefix:   /api
+
+api_util_register:
+    resource: "@AppBundle/Controller/RegistrationController.php"
+    type:     annotation
+
+api_util_login:
+    resource: "@AppBundle/Controller/LoginController.php"
+    type:     annotation
+
+api_login_check:
+    path: /login_check
+
+#FOS routing
+fos_comment_api:
+    type: rest
+    resource: "@FOSCommentBundle/Resources/config/routing.yml"
+    prefix: /api
+    defaults: { _format: html }

@@ -1,0 +1,24 @@
+# Alice Fixtures Load
+
+DietaBundle\Entity\User:
+      user_{1..100}:
+          username (unique): '<firstName()>'
+          email (unique):  '<firstName()><safeEmail()>@gmail.com'
+          plainPassword: 'test123'
+          enabled: 1
+          imageAvatar: '58e917f55d8e6.jpg'
+          updatedAt: '<datetime()>'
+          myFriends: '5x @user_*'
+
+DietaBundle\Entity\Receta:
+      receta_{1..200}:
+          nombre: '<sentence($nbWords = 5, $variableNbWords = true)>'
+          ingredientes: '<ingredientes()>'
+          preparacion:  '<preparacion()>'
+          tiempopreparacion: '<numberBetween(1, 100)>'
+          descripcion: '<paragraph($nbSentences = 4, $variableNbSentences = true)>'
+          raciones:   '<numberBetween(1, 100)>'
+          imageName: '58cebe5624c95.jpeg'
+          updatedAt: '<datetime()>'
+          user: '@user_*'
+          usuario_seguidores: '20x @user_*'

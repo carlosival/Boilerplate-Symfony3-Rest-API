@@ -1,0 +1,57 @@
+DietaBundle\Entity\Receta:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+        nombre:
+            expose: true
+        ingredientes:
+            expose: true
+        preparacion:
+            expose: true
+        tiempopreparacion:
+            expose: true
+        raciones:
+            expose: true
+        imageName:
+            expose: true
+        descripcion:
+            expose: true
+        updatedAt:
+            expose: true
+    relations:
+            -
+                rel: self
+                href:
+                    route: dieta_receta_get
+                    parameters:
+                          id: expr(object.getId())
+                absolute: true
+            -
+                rel:  picture
+                href: expr(object.getImageName())
+                #href:
+                    #route: dieta_receta_picture
+                    #parameters:
+                     #     id: expr(object.getId())
+                    #absolute: true
+            -
+                rel:  usuarios_seguidores
+                href:
+                    route: dieta_receta_usuarios_seguidores
+                    parameters:
+                          id: expr(object.getId())
+                absolute: true
+                exclusion:
+                   exclude_if: expr(object.getUsuarioSeguidores() === null)
+            -
+                rel: user
+                href:
+                    route: dieta_user_get
+                    parameters:
+                        id: expr(object.getUser())
+                    absolute: true
+                embedded:
+                      content: expr(object.getUser())
+                exclusion:
+                      exclude_if: expr(object.getUser() === null)
